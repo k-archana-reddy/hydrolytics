@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Provider</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+    </style>
+</head>
+<body class="bg-white">
+<div class="bg-white shadow-md py-4 flex justify-between items-center px-8" style="font-family: 'Righteous', cursive;"">
+  <img src="{% static '/Hydrolytics-logo.png' %}" alt="Logo" class="h-14">
+  <div class="flex space-x-6 text-xl">
+      <!-- Dropdown: Users -->
+      <div class="relative group">
+        <button class="text-[#d84040b6] hover:text-[#b72f2f] px-4 py-2 rounded">Users</button>
+        <div class="absolute hidden bg-white text-gray-500 rounded shadow-md group-hover:block">
+          <a href="{% url 'View_Remote_Users' %}" 
+             class="block text-sm font-normal px-4 py-2 hover:bg-gray-100 font-sans transition-all duration-200 ease-in-out">
+             Remote Users
+          </a>
+        </div>
+      </div>
+      <!-- Dropdown: Datasets -->
+      <div class="relative group">
+          <button class="text-[#d84040b6] hover:text-[#b72f2f] px-4 py-2 rounded">Datasets</button>
+          <div class="absolute hidden bg-white text-gray-500 rounded shadow-md group-hover:block">
+            <a href="{% url 'Train_Test_DataSets' %}" 
+               class="block text-sm font-normal px-4 py-2 hover:bg-gray-100 font-sans transition-all duration-200 ease-in-out">
+               Browse & Train Data
+            </a>
+        </div>
+        
+      </div>
+
+      <!-- Dropdown: Results -->
+      <div class="relative group">
+          <button class="text-[#d84040b6] hover:text-[#b72f2f] px-4 py-2 rounded">Results</button>
+          <div class="absolute hidden bg-white text-gray-500 rounded shadow-md group-hover:block">
+            <a href="{% url 'likeschart' 'bar' %}" 
+               class="block text-sm font-normal px-4 py-2 hover:bg-gray-100 font-sans transition-all duration-200 ease-in-out">
+               Accuracy (Bar Chart)
+            </a>
+            <a href="{% url 'charts1' 'line' %}" 
+               class="block text-sm font-normal px-4 py-2 hover:bg-gray-100 font-sans transition-all duration-200 ease-in-out">
+               Accuracy Results
+            </a>
+            <a href="{% url 'charts' 'line' %}" 
+               class="block text-sm font-normal px-4 py-2 hover:bg-gray-100 font-sans transition-all duration-200 ease-in-out">
+               Quality Detection Ratio
+            </a>
+        </div>
+        
+      </div>
+
+      <!-- Predictions -->
+      <a href="{% url 'View_Predicted_Water_Quality_Detection_Type' %}" class="text-[#d84040b6] hover:text-[#b72f2f] px-4 py-2 rounded">Predictions</a>
+  
+      <!-- Logout -->
+      <a href="{% url 'login' %}" class="text-[#d84040b6] hover:text-[#b72f2f] px-4 py-2 rounded">Logout</a>
+  </div>
+</div>
+
+
+<!-- Main Content -->
+<div class="container mx-auto p-6">
+    {% block researchblock %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

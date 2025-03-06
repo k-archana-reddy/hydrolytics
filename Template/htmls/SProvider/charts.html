@@ -1,0 +1,79 @@
+{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+<script>
+window.onload = function () {
+    var colors = ["#0077b6", "#0096c7", "#00b4d8", "#48cae4", "#90e0ef"]; // Hydrolytics colors
+
+    var dataPoints = [
+        {% for o in form %}
+            { y: {{ o.dcount }}, label: "{{ o.names }}", color: colors[{{ forloop.counter0 }} % colors.length] }{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    ];
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2",
+        title: { text: "" },
+        axisX: { labelAngle: -45 }, // Rotate X-axis labels
+        data: [{
+            {% if chart_type == "line" %}
+                type: "line",
+            {% elif chart_type == "pie" %}
+                type: "pie",
+            {% elif chart_type == "spline" %}
+                type: "spline",
+            {% endif %}
+            startAngle: 240,
+            yValueFormatString: "##0.00\"%\"",
+            indexLabel: "{label} {y}",
+            indexLabelFontSize: 14,
+            dataPoints: dataPoints
+        }]
+    });
+
+    chart.render();
+};
+</script>
+
+<body class="bg-white font-sans">
+    <div class="flex flex-col items-center">
+        <div class="text-center text-[#153448] pt-8 w-full">
+            <h1 class="text-3xl font-bold">Research Data Visualization</h1>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center w-full mt-8">
+            <!-- Sidebar -->
+            <div class="md:w-1/4 w-full text-center md:text-left md:px-20">
+                <h3 class="text-lg font-semibold my-4">
+                    <a href="{% url 'charts' 'pie' %}" 
+                       class="{% if chart_type == 'pie' %}text-[#b72f2f]{% else %}text-black{% endif %} hover:text-[#d84040b6]">
+                        Pie chart
+                    </a>
+                </h3>
+                <h3 class="text-lg font-semibold my-4">
+                    <a href="{% url 'charts' 'line' %}" 
+                       class="{% if chart_type == 'line' %}text-[#b72f2f]{% else %}text-black{% endif %} hover:text-[#d84040b6]">
+                        Line chart
+                    </a>
+                </h3>
+                <h3 class="text-lg font-semibold my-4">
+                    <a href="{% url 'charts' 'spline' %}" 
+                       class="{% if chart_type == 'spline' %}text-[#b72f2f]{% else %}text-black{% endif %} hover:text-[#d84040b6]">
+                        Spline chart
+                    </a>
+                </h3>
+            </div>
+            
+
+            <!-- Chart Container -->
+            <div class="md:w-3/4 w-full flex justify-center pt-20">
+                <div id="chartContainer" class="w-full max-w-4xl h-96"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
+{% endblock %}

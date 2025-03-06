@@ -1,0 +1,57 @@
+{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-6 py-10">
+        
+        <!-- Chart Section -->
+        <div class="bg-white shadow-lg rounded-lg p-6 max-w-screen-lg mx-auto">
+            <h2 class="text-3xl font-bold text-[#153448] text-center mb-4">
+                Data Visualization
+            </h2>
+            
+            <hr class="mb-4 border-gray-300">
+            
+            <!-- Chart Container -->
+            <div class="flex justify-center pt-10">
+                <div id="chartContainer" class="w-full max-w-4xl h-96"></div>
+            </div>
+            
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+            <script>
+                window.onload = function() {
+               var colors = ["#0096c7", "#00b4d8", "#48cae4"]; 
+
+               var dataPoints = [
+                    {% for o in form %}
+                         { y: {{ o.dcount }}, label: "{{ o.names }}", color: colors[{{ forloop.counter0 }} % colors.length] }{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+               ];
+
+               var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    title: { text: "" },
+                    data: [{
+                         {% if chart_type == "rangeSplineArea" %}
+                              type: "rangeSplineArea",
+                         {% elif chart_type == "pie" %}
+                              type: "pie",
+                         {% elif chart_type == "spline" %}
+                              type: "spline",
+                         {% endif %}
+                         startAngle: 240,
+                         yValueFormatString: "##0.00\"%\"",
+                         indexLabel: "{y}",
+                         indexLabelFontSize: 14,
+                         dataPoints: dataPoints // Corrected
+                    }]
+               });
+
+               chart.render();
+               };
+
+            </script>
+        </div>
+    </div>
+</body>
+{% endblock %}

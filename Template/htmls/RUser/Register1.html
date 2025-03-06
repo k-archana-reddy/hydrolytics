@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register Your Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css?family=Righteous|Fredoka+One" rel="stylesheet">
+  <style>
+    body {
+      background: #ffffff; /* White Background */
+      font-family:Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <div class="container mx-auto px-4 py-10">
+    <div class="flex justify-center items-center">
+      <img src="{% static '/Hydrolytics-logo.png' %}" alt="Logo" class="h-22">
+    </div>
+    <p class="text-center text-xl text-[#153448] mt-2" style="font-family: 'Righteous', cursive">Sip or Skip? Let Hydrolytics decide!</p>
+    <hr class="my-6">
+    <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-8 font-mono">
+      <p class="text-center text-xl text-[#d84040b6] font-bold my-2">Registration</p>
+      <form role="form" method="POST">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label class="font-bold block text-[#153448]">Username</label>
+          <input type="text" name="username" placeholder="Enter your username" required
+            class="w-full p-2 border border-gray-300 rounded-lg text-gray-500">
+        </div>
+        <div class="mb-4">
+          <label class="font-bold block text-[#153448]">Password</label>
+          <input type="password" name="password" placeholder="Enter your password" required
+            class="w-full p-2 border border-gray-300 rounded-lg text-gray-500">
+        </div>
+        <div class="mb-4">
+          <label class="font-bold block text-[#153448]">Email</label>
+          <input type="email" name="email" placeholder="Enter your email" required
+            class="w-full p-2 border border-gray-300 rounded-lg text-gray-500">
+        </div>
+        <div class="mb-4">
+          <label class="font-bold block text-[#153448]">Address</label>
+          <textarea name="address" placeholder="Enter your address"
+            class="w-full p-2 border border-gray-300 rounded-lg text-gray-500"></textarea>
+        </div>
+        <div class="mb-4">
+          <label class="font-bold block text-[#153448]">Gender</label>
+          <select name="gender" class="w-full p-2 border border-gray-300 rounded-lg text-gray-500">
+            <option class="text-gray-500">Select your gender</option>
+            <option class="text-gray-500">Male</option>
+            <option class="text-gray-500">Female</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label class="font-bold block text-[#153448]">Mobile Number</label>
+          <input type="text" name="phoneno" placeholder="Enter mobile number" required
+            class="w-full p-2 border border-gray-300 rounded-lg text-gray-500">
+        </div>
+        <div class="mb-4">
+          <label class="font-bold block text-[#153448]">Country Name</label>
+          <input type="text" name="country" placeholder="Enter country name" required
+            class="w-full p-2 border border-gray-300 rounded-lg text-gray-500">
+        </div>
+        <div class="mb-4">
+          <label class="font-bold block text-[#153448]">State Name</label>
+          <input type="text" name="state" placeholder="Enter state name" required
+            class="w-full p-2 border border-gray-300 rounded-lg text-gray-500">
+        </div>
+        <div class="mb-4">
+          <label class="font-bold block text-[#153448]">City Name</label>
+          <input type="text" name="city" placeholder="Enter city name" required
+            class="w-full p-2 border border-gray-300 rounded-lg text-gray-500">
+        </div>
+        <button type="submit" class="w-full bg-[#d84040b6] text-white py-2 rounded text-lg hover:bg-white hover:border hover:border-[#d84040b6] hover:text-[#d84040b6] transition">Register Now</button>
+      </form>
+      <p class="text-center mt-4"  style="font-family: 'Righteous', cursive"><a href="{% url 'login' %}" class="text-blue-500 hover:underline">Login</a></p>
+    </div>
+  </div>
+</body>
+
+</html>

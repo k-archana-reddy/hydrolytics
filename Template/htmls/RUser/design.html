@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote User</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white font-[Righteous]">
+
+    <div class="bg-white shadow-md py-4 flex justify-between items-center px-8">
+        <img src="{% static '/Hydrolytics-logo.png' %}" alt="Logo" class="h-14">
+        <div class="flex space-x-8 text-xl">
+            <a href="{% url 'ViewYourProfile' %}" class="text-[#d84040b6] hover:text-[#b72f2f] px-4 py-2 rounded">Your Profile</a>
+            <a href="{% url 'Prediction_Water_Quality_Detection' %}" class="text-[#d84040b6] hover:text-[#b72f2f] px-4 py-2 rounded">Predict Water Quality</a>
+            <a href="{% url 'login' %}" class="text-[#d84040b6] hover:text-[#b72f2f] px-4 py-2 rounded">Logout</a>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-6">
+        {% block userblock %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

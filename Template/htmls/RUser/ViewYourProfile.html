@@ -1,0 +1,46 @@
+{% extends 'RUser/design.html' %}
+{% block userblock %}
+
+<!-- <link rel="icon" href="images/icon.png" type="image/x-icon" /> -->
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+
+<body class="bg-white font-sans">
+    <div class="container mx-auto p-6">
+        <div class="bg-white p-8 m-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-extrabold text-[#153448] font-[Righteous] mb-4">User Details</h2>
+            <table class="w-full border-collapse font-sans">
+                <tbody>
+                    <tr class="border-b">
+                        <td class="font-semibold text-[#153448] p-3">Username</td>
+                        <td class="p-3  text-gray-500">{{object.username}}</td>
+                        <td class="font-semibold text-[#153448] p-3">Email Id</td>
+                        <td class="p-3  text-gray-500">{{object.email}}</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="font-semibold text-[#153448] p-3">Mobile Number</td>
+                        <td class="p-3  text-gray-500">{{object.phoneno}}</td>
+                        <td class="font-semibold text-[#153448] p-3">Gender</td>
+                        <td class="p-3  text-gray-500">{{object.gender}}</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="font-semibold text-[#153448] p-3">Address</td>
+                        <td class="p-3  text-gray-500">{{object.address}}</td>
+                        <td class="font-semibold text-[#153448] p-3">Country</td>
+                        <td class="p-3  text-gray-500">{{object.country}}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold text-[#153448] p-3">State</td>
+                        <td class="p-3 text-gray-500">{{object.state}}</td>
+                        <td class="font-semibold text-[#153448] p-3">City</td>
+                        <td class="p-3 text-gray-500">{{object.city}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
+{% endblock %}

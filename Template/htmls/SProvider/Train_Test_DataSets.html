@@ -1,0 +1,38 @@
+{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+<body class="bg-gray-900 text-white font-sans">
+    <div class="container mx-auto px-6 py-10">
+        <div class="bg-white p-8 shadow-lg rounded-lg">
+            <h2 class="text-3xl font-bold text-[#153448] text-center mb-6">
+                Water Datasets Trained and Tested Results
+            </h2>
+            
+            <hr class="mb-6 border-gray-300">
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse border border-gray-300">
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="border border-gray-300 px-4 py-2 text-gray-700 text-center">Model Type</th>
+                            <th class="border border-gray-300 px-4 py-2 text-gray-700 text-center">Accuracy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for object in objs %}
+                        <tr class="bg-white hover:bg-gray-100 transition-all">
+                            <td class="border border-gray-300 px-4 py-2 text-gray-700 text-center">{{ object.names }}</td>
+                            <td class="border border-gray-300 px-4 py-2 text-gray-700 text-center">{{ object.ratio }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 text-center text-gray-700">
+                {{ objs1 }}
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
